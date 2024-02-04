@@ -74,97 +74,203 @@ class _HomePageState extends State<HomePage> {
         toolbarHeight: 50,
         backgroundColor: Theme.of(context).colorScheme.background,
         title: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 15),
-            child: Row(
-              mainAxisAlignment:
-                  MainAxisAlignment.spaceBetween, // Add this line
-              children: [
-                Image.asset(
-                  "./asset/logo.png",
-                  height: 40,
-                ),
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ClipOval(
-                        child: SizedBox.fromSize(
-                          size: Size.fromRadius(15), // Image radius
-                          child: Image.asset('./asset/profile.png',
-                              fit: BoxFit.cover),
-                        ),
-                      ),
-                      Padding(
-                          padding: const EdgeInsets.only(left: 10.0),
-                          child:
-                              Text('guragura', style: TextStyle(fontSize: 16)))
-                    ],
-                  ),
-                ),
-              ],
-            )),
-      ),
-      body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          child: Wrap(
+          padding: EdgeInsets.symmetric(horizontal: 15),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              //reccommend
+              Image.asset(
+                "./asset/logo.png",
+                height: 40,
+              ),
               Container(
-                width: double.infinity,
-                height: 120,
-                clipBehavior: Clip.antiAlias,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(30),
-                ),
-                child:
-                    Image.asset('./asset/reccommendex.png', fit: BoxFit.cover),
-              ),
-              Padding(padding: EdgeInsets.symmetric(vertical: 70)),
-              //anime trend and see all
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    child: Row(
-                      children: [
-                        Image.asset('./asset/trend.png'),
-                        Padding(
-                            padding: const EdgeInsets.only(left: 10.0),
-                            child: Text('Anime Trend',
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.w700)))
-                      ],
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ClipOval(
+                      child: SizedBox.fromSize(
+                        size: Size.fromRadius(15), // Image radius
+                        child: Image.asset('./asset/profile.png',
+                            fit: BoxFit.cover),
+                      ),
                     ),
-                  ),
-                  Text('see all',
-                      style: TextStyle(
-                          fontSize: 16,
-                          color: Color(ColorPalatte.color['link']!)))
-                ],
-              ),
-              Padding(padding: EdgeInsets.symmetric(vertical: 20)),
-              //anime list
-              GridView.count(
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                crossAxisCount: 3,
-                childAspectRatio: (1 / (300 / 150)),
-                controller: ScrollController(keepScrollOffset: false),
-                shrinkWrap: true,
-                children: List.generate(
-                  animeList.length,
-                  (index) => AnimeCard(
-                    animeOriginalName: animeList[index]["animeOriginalName"]!,
-                    animeEngName: animeList[index]["animeEngName"]!,
-                    animePoster: animeList[index]["animePoster"]!,
-                    availablePlatform: animeList[index]["availablePlatform"]!,
-                  ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: Text('guragura', style: TextStyle(fontSize: 16)),
+                    ),
+                  ],
                 ),
               ),
             ],
-          )),
+          ),
+        ),
+      ),
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                child: Column(
+                  children: [
+                    // Recommend
+                    Container(
+                      width: double.infinity,
+                      height: 120,
+                      clipBehavior: Clip.antiAlias,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      child: Image.asset('./asset/reccommendex.png',
+                          fit: BoxFit.cover),
+                    ),
+                    Padding(padding: EdgeInsets.symmetric(vertical: 10)),
+                    // Anime trend and see all
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Container(
+                          child: Row(
+                            children: [
+                              Image.asset('./asset/trend.png'),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10.0),
+                                child: Text(
+                                  'Anime Trend',
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w700),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Text(
+                          'see all',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color(ColorPalatte.color['link']!),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Padding(padding: EdgeInsets.symmetric(vertical: 10)),
+                    // Anime list
+                    GridView.count(
+                      crossAxisSpacing: 10,
+                      mainAxisSpacing: 10,
+                      crossAxisCount: 3,
+                      childAspectRatio: (1 / (300 / 150)),
+                      controller: ScrollController(keepScrollOffset: false),
+                      shrinkWrap: true,
+                      children: List.generate(
+                        animeList.length,
+                        (index) => AnimeCard(
+                          animeOriginalName: animeList[index]
+                              ["animeOriginalName"]!,
+                          animeEngName: animeList[index]["animeEngName"]!,
+                          animePoster: animeList[index]["animePoster"]!,
+                          availablePlatform: animeList[index]
+                              ["availablePlatform"]!,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          // Footer
+          Container(
+            decoration: BoxDecoration(
+              border: Border(
+              top: BorderSide(
+                  color: Color(0xFFE7E5E4), // Set the color of the border
+                  width: 2.0, // Set the width of the border
+              ))),
+            height: 80.0,
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 40),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center, // Add this to center the column content vertically
+                    children: [
+                      Image.asset("./asset/onhome.png", height: 20),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5.0),
+                        child: Text(
+                          'HOME',
+                          style: TextStyle(
+                            color: Color(ColorPalatte.color['button']!),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center, 
+                    children: [
+                      Image.asset("./asset/schedule.png", height: 20),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5.0),
+                        child: Text(
+                          'SCHEDULE',
+                          style: TextStyle(
+                            color: Color(ColorPalatte.color['border']!), 
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset("./asset/search.png", height: 20),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5.0),
+                        child: Text(
+                          'SEARCH',
+                          style: TextStyle(
+                            color: Color(ColorPalatte.color['border']!), 
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center, 
+                    children: [
+                      Image.asset("./asset/more.png", height: 20),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5.0),
+                        child: Text(
+                          'MORE',
+                          style: TextStyle(
+                            color: Color(ColorPalatte.color['border']!), 
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+        ],
+      ),
     );
   }
+
 }
 
 class AnimeCard extends StatelessWidget {

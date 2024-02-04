@@ -66,6 +66,10 @@ flutter:
     - ./asset/trend.png
     - ./asset/reccommendex.png
     - ./asset/netflix.png
+    - ./asset/onhome.png
+    - ./asset/schedule.png
+    - ./asset/search.png
+    - ./asset/more.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
