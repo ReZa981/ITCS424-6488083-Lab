@@ -1,14 +1,29 @@
 import 'package:flutter/material.dart';
 import 'theme.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+List<Map<String, String>> animeList = [
+  {
+    "animeOriginalName": "Jujutsu Kaisen",
+    "animeEngName": "呪術廻戦",
+    "animePoster": "jujutsu.png",
+    "availablePlatform": "netflix",
+  },
+  {
+    "animeOriginalName": "Solo leveling",
+    "animeEngName": "Solo leveling",
+    "animePoster": "jujutsu.png",
+    "availablePlatform": "netflix",
+  },
+  // Add more anime maps to the list as needed
+];
 
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -84,67 +99,85 @@ class _MyHomePageState extends State<MyHomePage> {
                           color: Color(ColorPalatte.color['link']!)))
                 ],
               ),
-              Padding(padding: EdgeInsets.symmetric(vertical: 70)),
+              Padding(padding: EdgeInsets.symmetric(vertical: 20)),
               //anime list
+              GridView.count(
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
+                crossAxisCount: 3,
+                childAspectRatio: (1 / (300 / 150)),
+                controller: ScrollController(keepScrollOffset: false),
+                shrinkWrap: true,
+                children: List.generate(
+                    9,
+                    (index) => AnimeCard(
+                          animeOriginalName: 'Original Name ${index + 1}',
+                          animeEngName: 'English Name ${index + 1}',
+                          animePoster:
+                              'jujutsu.png', // Make sure this asset exists
+                          availablePlatform: 'Platform ${index + 1}',
+                        )),
+              )
             ],
-          )
-          // child: ListView(
-          //   children: <Widget>[
-          //     AnimeCard(
-          //       anime_original_name: 'anime_original_name',
-          //       anime_eng_name: 'anime_eng_name',
-          //       anime_poster: 'jujutsu.png',
-          //       available_platform: 'available_platform'
-          //     )
-          //   ],
-          // ),
-          ),
+          )),
     );
   }
 }
 
 class AnimeCard extends StatelessWidget {
-  final String anime_original_name;
-  final String anime_eng_name;
-  final String anime_poster;
-  final String available_platform;
+  final String animeOriginalName;
+  final String animeEngName;
+  final String animePoster;
+  final String availablePlatform;
 
-  AnimeCard({
+  const AnimeCard({
     Key? key,
-    required this.anime_original_name,
-    required this.anime_eng_name,
-    required this.anime_poster,
-    required this.available_platform,
+    required this.animeOriginalName,
+    required this.animeEngName,
+    required this.animePoster,
+    required this.availablePlatform,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(2),
-      height: 120,
-      child: Card(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: <Widget>[
-            Image.asset(
-                './asset/$anime_poster'), // Use the provided anime_poster path
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.all(5),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Text(
-                      anime_original_name,
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Text(anime_eng_name),
-                  ],
-                ),
+    return Card(
+      clipBehavior: Clip.antiAlias,
+      elevation: 0,
+      color: Colors.transparent,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Container(
+            height: 180,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              image: DecorationImage(
+                image: AssetImage('./asset/$animePoster'),
+                fit: BoxFit.fitHeight,
               ),
             ),
-          ],
-        ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Text(
+              animeOriginalName,
+              style: TextStyle(
+                fontSize: 10,
+                color: Color(ColorPalatte.color['shadow']!),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            child: Text(
+              animeEngName,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 12,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: Color(ColorPalatte.color['base']!),
       ),
-      home: const MyHomePage(),
+      home: const HomePage(),
     );
   }
 }
