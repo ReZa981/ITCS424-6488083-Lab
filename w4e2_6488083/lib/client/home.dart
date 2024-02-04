@@ -23,14 +23,35 @@ class _MyHomePageState extends State<MyHomePage> {
         toolbarHeight: 50,
         backgroundColor: Theme.of(context).colorScheme.background,
         title: Align(
-          alignment: Alignment.centerLeft,
-          child: Row(
-            children: [
-              Image.asset("../asset/logo.png"),
-              const Text ('guragurra'),
-            ],
-          )
-        ),
+            alignment: Alignment.centerLeft,
+            child: Row(
+              mainAxisAlignment:
+                  MainAxisAlignment.spaceBetween, // Add this line
+              children: [
+                Image.asset(
+                  "./asset/logo.png",
+                  height: 30,
+                ),
+                Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      ClipOval(
+                        child: SizedBox.fromSize(
+                          size: Size.fromRadius(15), // Image radius
+                          child: Image.asset('./asset/profile.png',
+                              fit: BoxFit.cover),
+                        ),
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.only(left: 10.0),
+                          child:
+                              Text('guragura', style: TextStyle(fontSize: 16)))
+                    ],
+                  ),
+                ),
+              ],
+            )),
       ),
       body: Center(
         child: Column(

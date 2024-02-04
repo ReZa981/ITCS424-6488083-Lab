@@ -15,6 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.black,
+          background: Color(ColorPalatte.color['base']!),
           primary: Color(ColorPalatte.color['button']!),
         ),
         useMaterial3: true,
