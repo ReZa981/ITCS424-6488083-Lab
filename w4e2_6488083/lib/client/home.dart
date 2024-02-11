@@ -151,8 +151,8 @@ class HomePageContent extends StatelessWidget {
           decoration: BoxDecoration(
               border: Border(
                   top: BorderSide(
-            color: Color(0xFFE7E5E4), 
-            width: 2.0, 
+            color: Color(0xFFE7E5E4),
+            width: 2.0,
           ))),
           height: 80.0,
           child: Padding(
@@ -256,8 +256,15 @@ class AnimeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
         onTap: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const HomePage()));
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => AnimeInfoPage(
+                        animeOriginalName: animeOriginalName,
+                        animeEngName: animeEngName,
+                        animePoster: animePoster,
+                        availablePlatform: availablePlatform,
+                      )));
         },
         child: Card(
           clipBehavior: Clip.antiAlias,
