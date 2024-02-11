@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import '../theme.dart';
-import '../client/home.dart';
-import '../client/animeinfo.dart';
-
 
 class DefaultLayout extends StatelessWidget {
 
