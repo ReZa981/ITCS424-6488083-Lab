@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'client/home.dart';
-import 'client/theme.dart';
+import 'package:w4e2_6488083/client/home.dart';
+import 'theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: Color(ColorPalatte.color['base']!),
       ),
-      home: const HomePage(),
+      home: HomePage(),
     );
   }
 }
